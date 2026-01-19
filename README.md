@@ -183,3 +183,56 @@ Filtering by attributes improves precision by restricting search scope.
 10. **Vector + Naive Reranking (Similarity Only)**
     - Simple cosine-similarity reranking lacks true semantic composition or query-document interaction.
     - Performs worst among modern options.
+
+
+---
+
+## Roadmap for Top 3 Retrieval Methods
+
+### 1. Hybrid Dense–Sparse Retrieval + RRF
+
+**Step 1:** Implement BM25 for sparse retrieval as a baseline.  
+**Step 2:** Integrate a dense retriever (e.g., Sentence-BERT, DPR, or E5) for semantic search.  
+**Step 3:** Combine results from both retrievers using Reciprocal Rank Fusion (RRF) to merge rankings.  
+**Step 4:** Evaluate recall, precision, and robustness on in-domain and out-of-domain datasets.  
+**Step 5:** Tune fusion weights and thresholds for optimal performance.
+
+---
+
+### 2. Cross-Encoder / ColBERT Reranking (WITH Hybrid Retrieval)
+
+**Step 1:** Use the hybrid retrieval pipeline (BM25 + dense retriever) to generate a candidate set (top-k).  
+**Step 2:** Apply a cross-encoder (e.g., MonoT5, T5) or ColBERT reranker to rescore the candidate set using deep interaction.  
+**Step 3:** Select the top results based on reranker scores.  
+**Step 4:** Benchmark precision and latency; optimize reranker batch size and inference speed as needed.
+
+---
+
+### 3. Query Rewriting + Acronym / Synonym Expansion
+
+**Step 1:** Analyze queries for possible ambiguities, acronyms, or synonyms.  
+**Step 2:** Apply query rewriting techniques (manual rules, synonym dictionaries, or LLM-based rewriting).  
+**Step 3:** Expand queries using pseudo relevance feedback (e.g., RM3) or external knowledge bases.  
+**Step 4:** Submit multiple reformulated queries to the retrieval system and aggregate results (optionally with RRF).  
+**Step 5:** Monitor for topic drift and tune expansion strategies for domain relevance.
+
+---
+
+## Comparison Table
+
+| Method                                      | Recall | Precision | OOD Robustness | Speed   | Implementation Complexity | Data Requirements         | Strengths                                   | Weaknesses                                  |
+|----------------------------------------------|--------|-----------|----------------|---------|--------------------------|---------------------------|---------------------------------------------|---------------------------------------------|
+| Hybrid Dense–Sparse Retrieval + RRF          | High   | High      | High           | Medium  | Medium                   | Moderate (BM25 + dense)   | Best overall, robust, stable                | Needs fusion logic, more infra              |
+| Cross-Encoder / ColBERT Reranking (Hybrid)   | High   | SOTA      | High           | Low-Med | High                     | Large for reranking       | SOTA precision, deep interaction            | Slow, compute-intensive                     |
+| Query Rewriting + Acronym/Synonym Expansion  | High   | Medium    | Medium         | Medium  | Medium                   | Synonym/acronym resources | Handles vocab mismatch, boosts recall       | Risk of topic drift, tuning needed           |
+| HyDE (Hypothetical Document Embedding)       | High   | Medium    | High           | Medium  | Medium                   | LLM access                | Zero-shot, no training data needed          | LLM cost, quality varies                    |
+| Knowledge Graph Retrieval / GraphRAG         | Medium | High      | Medium         | Low     | High                     | Structured data/graphs    | Structured reasoning, entity-centric        | Needs graph infra, limited applicability    |
+| Domain-Adapted Embeddings                    | High   | Medium    | Low-Med        | High    | High                     | Domain pairs for tuning   | Best in-domain, contextual                  | Poor OOD, needs labeled data                |
+| Metadata-Driven Retrieval                    | Low    | High      | High           | High    | Low                      | Metadata-rich docs        | Precision, compliance, filtering            | Limited semantic recall                     |
+| Dense-Only Retrieval                         | Medium | Medium    | Low            | High    | Medium                   | Dense encoder             | Fast, semantic                             | Brittle OOD, misses lexical cues            |
+| Sparse-Only Retrieval (BM25 only)            | Medium | Medium    | High           | High    | Low                      | None                      | Simple, robust, interpretable               | Misses semantics, paraphrasing              |
+| Vector + Naive Reranking (Similarity Only)   | Low    | Low       | Low            | High    | Low                      | Dense encoder             | Simple, fast                               | Weak semantic matching, poor accuracy       |
+
+---
+
+*OOD: Out-of-Domain; SOTA: State-of-the-Art*
