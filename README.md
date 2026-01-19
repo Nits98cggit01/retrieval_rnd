@@ -11,8 +11,8 @@ BM25 is a probabilistic term-weighting retrieval model that scores documents usi
 - Simple, interpretable, and fast.
 
 **References:**
-- [The Probabilistic Relevance Framework: BM25 and Beyond (Robertson & Zaragoza, 2009)](https://staff.city.ac.uk/~sb317/)
-- [BEIR Benchmark — BM25 as a robust baseline](https://arxiv.org/abs/2104.08663)
+- [BM25 - Overview]([https://staff.city.ac.uk/~sb317/](https://www.geeksforgeeks.org/nlp/what-is-bm25-best-matching-25-algorithm/))
+- [BM25 Explained: A Better Ranking Algorithm than TF-IDF]([https://arxiv.org/abs/2104.08663](https://vishwasg.dev/blog/2025/01/20/bm25-explained-a-better-ranking-algorithm-than-tf-idf/))
 
 ---
 
@@ -27,9 +27,9 @@ Dense retrieval encodes queries and documents into vectors using neural encoders
 - Zero-shot performance superior to BM25 (E5).
 
 **References:**
-- [DPR: Dense Passage Retrieval](https://arxiv.org/abs/2004.04906)
-- [Sentence-BERT](https://arxiv.org/abs/1908.10084)
-- [E5 Embeddings](https://arxiv.org/abs/2204.02984)
+- [FAISS]([https://arxiv.org/abs/2004.04906](https://faiss.ai/))
+- [Sentence-BERT]([https://arxiv.org/abs/1908.10084](https://www.sbert.net/))
+- [Apache Solr Reference Guide]([https://arxiv.org/abs/2204.02984](https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html))
 
 ### 3. Domain-Adapted Embeddings
 Dense models fine-tuned on domain-specific pairs significantly improve contextual retrieval accuracy.
@@ -40,8 +40,8 @@ Dense models fine-tuned on domain-specific pairs significantly improve contextua
 - Contriever improves zero-shot but benefits from targeted data.
 
 **References:**
-- [BEIR: Dense models OOD limitations](https://arxiv.org/abs/2104.08663)
-- [Contriever](https://arxiv.org/abs/2112.04426)
+- [Domain Adapted Word Embeddings for Improved Sentiment Classification]([https://arxiv.org/abs/2104.08663](https://aclanthology.org/W18-3407/))
+- [Domain adaptation for embedding models]([https://arxiv.org/abs/2112.04426](https://zilliz.com/ai-faq/what-is-domain-adaptation-for-embedding-models))
 
 ---
 
@@ -55,7 +55,7 @@ Combines BM25’s lexical strength with dense retrieval’s semantic matching fo
 - Robust to domain shifts and heterogeneous corpora.
 
 **References:**
-- [BEIR: Hybrid methods](https://arxiv.org/abs/2104.08663)
+- [A Complete Guide to Implementing Hybrid RAG]([https://arxiv.org/abs/2104.08663](https://medium.com/aingineer/a-complete-guide-to-implementing-hybrid-rag-86c0febba474))
 
 ### 5. Reciprocal Rank Fusion (RRF)
 RRF merges multiple retrieval lists and consistently outperforms individual retrievers.
@@ -67,6 +67,7 @@ RRF merges multiple retrieval lists and consistently outperforms individual retr
 
 **References:**
 - [RRF Paper](https://cormack.uwaterloo.ca/cormack/papers/Reciprocal_Rank_Fusion.pdf)
+- [Relevance scoring in hybrid search using Reciprocal Rank Fusion (RRF)](https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking)
 
 ---
 
