@@ -82,6 +82,7 @@ MonoT5/T5 rerankers use deep cross-attention for state-of-the-art precision; Col
 **References:**
 - [MonoT5 / T5 rerankers](https://aclanthology.org/2020.findings-emnlp.372/)
 - [ColBERT / ColBERTv2](https://arxiv.org/abs/2004.12832), [ColBERTv2](https://aclanthology.org/2022.emnlp-main.556/)
+- [Cross-Encoders, ColBERT, and LLM-Based Re-Rankers: A Practical Guide](https://medium.com/@aimichael/cross-encoders-colbert-and-llm-based-re-rankers-a-practical-guide-a23570d88548)
 
 ### 7. Multi-Query Retrieval
 Submitting multiple reformulated queries increases recall and robustness.
